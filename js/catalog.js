@@ -2,6 +2,16 @@
 
 'use strict';
 
+// Array to store CartItem instances
+var arrCartItem = [];
+
+// CartItem constructor
+function CartItem(index, quantity) {
+  this.index = index;
+  this.quantity = quantity;
+  arrCartItem.push(this);
+}
+
 // On screen load, we call this method to put all of the busmall options
 // (the things in the Product.allProducts array) into the drop down list.
 function populateForm() {
@@ -33,17 +43,18 @@ function handleSubmit(event) {
 
 // TODO: Add the selected item and quantity to the cart
 function addSelectedItemToCart() {
-  // Suss out the item picked from the select list
+  // Suss out the item picked from the select list - grabs index to simplify use with Product.allProducts array
   var selectElement = document.getElementById('items');
-  var optionSelected = selectElement.options[selectElement.selectedIndex].text;
-  console.log(optionSelected);
+  var indexSelected = selectElement.selectedIndex;
+  console.log(indexSelected);
 
-  // TODO: get the quantity
+  // Get the quantity
   var quantityElement = document.getElementById('quantity');
   var numSelected = quantityElement.value;
   console.log(numSelected);
 
   // TODO: using those, create a new Cart item instance *** Include index this appears at in Product.allProducts ***
+  new CartItem(indexSelected, numSelected);
 }
 
 // TODO: Save the contents of the cart to Local Storage
