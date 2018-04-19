@@ -2,9 +2,13 @@
 
 'use strict';
 
+var ulItemCount = document.getElementById('itemCount');
+var liItemCount = document.createElement('li');
+
+// Retrieves CartItem instances from Local Storage
 var parsedSelections = JSON.parse(localStorage.getItem('selections'));
 
-// Array to store CartItem instances
+// Array to store CartItem instances - grabs contents in Local Storage if any exist
 CartItem.arrCartItem = parsedSelections || [];
 
 // CartItem constructor
@@ -65,7 +69,15 @@ function saveCartToLocalStorage() {
 }
 
 // TODO: Update the cart count in the header nav with the number of items in the Cart
-function updateCounter() {}
+function updateCounter() {
+  var totalItems = 0;
+  for (var i in CartItem.arrCartItem) {
+    totalItems += parseInt(CartItem.arrCartItem[i].quantity);
+  }
+
+  liItemCount.textContent = totalItems;
+  ulItemCount.appendChild(liItemCount);
+}
 
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
 function updateCartPreview() {
