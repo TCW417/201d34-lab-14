@@ -6,6 +6,9 @@
 var ulItemCount = document.getElementById('itemCount');
 var liItemCount = document.createElement('li');
 
+// Prepares variables for use in updateCartPreview function
+var divElement = document.getElementById('cartContents');
+
 // Retrieves CartItem instances from Local Storage
 var parsedSelections = JSON.parse(localStorage.getItem('selections'));
 
@@ -89,12 +92,24 @@ function updateCartPreview() {
 
   for (var i in CartItem.arrCartItem) {
     arrItemPreview.push(Product.allProducts[parseInt(CartItem.arrCartItem[i].index)].filePath);
-    console.log(i + ' ::::::: ' + Product.allProducts[CartItem.arrCartItem[i].index].filePath);
 
     arrItemQuantity.push(parseInt(CartItem.arrCartItem[i].quantity));
+
+    console.log(i + ' ::::::: ' + Product.allProducts[CartItem.arrCartItem[i].index].filePath);
     console.log(i + ' ::::::: ' + parseInt(CartItem.arrCartItem[i].quantity));
   }
   // TODO: Add a new element to the cartContents div with that information
+
+  for (var j in CartItem.arrCartItem) {
+    var imageElement = document.createElement('img');
+    var quantityElement = document.createElement('p');
+
+    imageElement.src = arrItemPreview[j];
+    quantityElement.textContent = arrItemQuantity[j];
+
+    divElement.appendChild(imageElement);
+    divElement.appendChild(quantityElement);
+  }
 }
 
 // Set up the "submit" event listener on the form.
