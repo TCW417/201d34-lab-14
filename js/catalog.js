@@ -2,14 +2,16 @@
 
 'use strict';
 
+var parsedSelections = JSON.parse(localStorage.getItem('selections'));
+
 // Array to store CartItem instances
-var arrCartItem = [];
+CartItem.arrCartItem = parsedSelections || [];
 
 // CartItem constructor
 function CartItem(index, quantity) {
   this.index = index;
   this.quantity = quantity;
-  arrCartItem.push(this);
+  CartItem.arrCartItem.push(this);
 }
 
 // On screen load, we call this method to put all of the busmall options
@@ -53,13 +55,13 @@ function addSelectedItemToCart() {
   var numSelected = quantityElement.value;
   console.log(numSelected);
 
-  // TODO: using those, create a new Cart item instance *** Include index this appears at in Product.allProducts ***
+  // Using those, create a new Cart item instance *** Includes index where item appears in Product.allProducts ***
   new CartItem(indexSelected, numSelected);
 }
 
 // TODO: Save the contents of the cart to Local Storage
 function saveCartToLocalStorage() {
-
+  localStorage.setItem('selections', JSON.stringify(CartItem.arrCartItem));
 }
 
 // TODO: Update the cart count in the header nav with the number of items in the Cart
