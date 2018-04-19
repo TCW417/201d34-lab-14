@@ -1,1 +1,26 @@
 /* TODO: Make it awesome */
+main {
+  width: 960px;
+}
+header {
+  background-color: grey;
+  color: white;
+  width: 100%;
+  text-align: center;
+}
+nav {
+  background-color: grey;
+}
+h1 {
+  font-size: 24px;
+}
+p {
+  float: left;
+  font-size: 20px;
+}
+img {
+  display: block;
+  float: left;
+  height: 300px;
+  width: 300px;
+}
