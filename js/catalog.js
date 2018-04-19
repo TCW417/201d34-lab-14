@@ -85,6 +85,8 @@ function updateCounter() {
 
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
 function updateCartPreview() {
+  // Reset the divElement, so that images aren't re-rendered with every iteration of the loop
+  divElement.innerHTML = '';
 
   // Get the item and quantity from the form
   var arrItemPreview = [];
@@ -98,9 +100,9 @@ function updateCartPreview() {
     console.log(i + ' ::::::: ' + Product.allProducts[CartItem.arrCartItem[i].index].filePath);
     console.log(i + ' ::::::: ' + parseInt(CartItem.arrCartItem[i].quantity));
   }
-  // TODO: Add a new element to the cartContents div with that information
 
-  for (var j in CartItem.arrCartItem) {
+  // Add a new element to the cartContents div with that information
+  for (var j = 0; j < CartItem.arrCartItem.length; j++) {
     var imageElement = document.createElement('img');
     var quantityElement = document.createElement('p');
 
