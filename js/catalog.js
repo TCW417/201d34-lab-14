@@ -2,6 +2,7 @@
 
 'use strict';
 
+// Prepares variables for use in updateCounter function
 var ulItemCount = document.getElementById('itemCount');
 var liItemCount = document.createElement('li');
 
@@ -81,7 +82,18 @@ function updateCounter() {
 
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
 function updateCartPreview() {
-  // TODO: Get the item and quantity from the form
+
+  // Get the item and quantity from the form
+  var arrItemPreview = [];
+  var arrItemQuantity = [];
+
+  for (var i in CartItem.arrCartItem) {
+    arrItemPreview.push(Product.allProducts[parseInt(CartItem.arrCartItem[i].index)].filePath);
+    console.log(i + ' ::::::: ' + Product.allProducts[CartItem.arrCartItem[i].index].filePath);
+
+    arrItemQuantity.push(parseInt(CartItem.arrCartItem[i].quantity));
+    console.log(i + ' ::::::: ' + parseInt(CartItem.arrCartItem[i].quantity));
+  }
   // TODO: Add a new element to the cartContents div with that information
 }
 
