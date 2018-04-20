@@ -7,7 +7,7 @@
 var Cart = [];
 var Catalog = [];
 
-// Create an event listener so that when the delete link is clicked, the removeItemFromCart method is invoked.
+// Create an event listener so that when the delete link is clicked, the removeItemFromselections method is invoked.
 var table = document.getElementById('cart');
 table.addEventListener('click', removeItemFromCart);
 
@@ -133,7 +133,7 @@ function removeItemFromCart(e) {
     // TODO: When a delete link is clicked, rebuild the Cart array without that item
     Cart.splice(item,1);
     // TODO: Save the cart back to local storage
-    localStorage.cart = JSON.stringify(Cart);
+    localStorage.selections = JSON.stringify(Cart);
   } else if (e.target.type === 'submit') {
     // TODO: Re-draw the cart table
     clearCart();
