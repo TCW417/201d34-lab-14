@@ -145,7 +145,7 @@ function removeItemFromCart(e) {
 }
 
 function renderCheckoutForm() {
-  debugger;
+
   var bodyEl = document.getElementsByTagName('body')[0];
   var mainEl = bodyEl.getElementsByTagName('main')[0];
   var sectionEl = document.createElement('section');
