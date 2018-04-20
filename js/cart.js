@@ -27,7 +27,6 @@ function renderCart() {
 }
 
 function fixDeleteInstructions() {
-  debugger;
   var copyEl = document.getElementsByClassName('copy')[0];
   var copyOl = copyEl.getElementsByTagName('ol')[0];
   var liEl = copyOl.getElementsByTagName('li')[0];
@@ -150,7 +149,76 @@ function renderCheckoutForm() {
   var bodyEl = document.getElementsByTagName('body')[0];
   var mainEl = bodyEl.getElementsByTagName('main')[0];
   var sectionEl = document.createElement('section');
+  //ext inputs for each of: name, street, city, state, ZIP code, and phone number
+  var formEl = document.createElement('form');
+  var fieldSetEl = document.createElement('fieldset');
+
+  var labelEl = document.createElement('label');
+  labelEl.setAttribute('for','name');
+  labelEl.textContent = 'Name: ';
+  fieldSetEl.appendChild(labelEl);
+  var inputEl = document.createElement('input');
+  inputEl.setAttribute('id','name');
+  inputEl.setAttribute('type','text');
+  fieldSetEl.appendChild(inputEl);
+
+  labelEl = document.createElement('label');labelEl.setAttribute('for','street');
+  labelEl.textContent = 'Street: ';
+  fieldSetEl.appendChild(labelEl);
+  inputEl = document.createElement('input');
+  inputEl.setAttribute('id','street');
+  inputEl.setAttribute('type','text');
+  fieldSetEl.appendChild(inputEl);
   mainEl.appendChild(sectionEl);
+
+  labelEl = document.createElement('label');labelEl.setAttribute('for','city');
+  labelEl.textContent = 'City: ';
+  fieldSetEl.appendChild(labelEl);
+  inputEl = document.createElement('input');
+  inputEl.setAttribute('id','city');
+  inputEl.setAttribute('type','text');
+  fieldSetEl.appendChild(inputEl);
+
+  labelEl = document.createElement('label');labelEl.setAttribute('for','state');
+  labelEl.textContent = 'State: ';
+  fieldSetEl.appendChild(labelEl);
+  inputEl = document.createElement('input');
+  inputEl.setAttribute('id','state');
+  inputEl.setAttribute('type','text');
+  fieldSetEl.appendChild(inputEl);
+
+  labelEl = document.createElement('label');labelEl.setAttribute('for','zip');
+  labelEl.textContent = 'Zip: ';
+  fieldSetEl.appendChild(labelEl);
+  inputEl = document.createElement('input');
+  inputEl.setAttribute('id','zip');
+  inputEl.setAttribute('type','text');
+  fieldSetEl.appendChild(inputEl);
+
+  labelEl = document.createElement('label');labelEl.setAttribute('for','phone');
+  labelEl.textContent = 'Phone: ';
+  fieldSetEl.appendChild(labelEl);
+  inputEl = document.createElement('input');
+  inputEl.setAttribute('id','phone');
+  inputEl.setAttribute('type','text');
+  fieldSetEl.appendChild(inputEl);
+
+  labelEl = document.createElement('label');labelEl.setAttribute('for','card');
+  labelEl.textContent = 'Credit card: ';
+  fieldSetEl.appendChild(labelEl);
+  inputEl = document.createElement('input');
+  inputEl.setAttribute('id','card');
+  inputEl.setAttribute('type','number');
+  fieldSetEl.appendChild(inputEl);
+
+  var buttonEl = document.createElement('button');
+  buttonEl.setAttribute('name','submit');
+  buttonEl.textContent = 'Place Order';
+  fieldSetEl.appendChild(buttonEl);
+
+  formEl.appendChild(fieldSetEl);
+  sectionEl.appendChild(formEl);
+
 }
 
 localStorage.cart = JSON.stringify(Cart);
