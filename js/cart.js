@@ -1,10 +1,10 @@
 'use strict';
 
-var Cart = [{itemNumber: 0, itemQty: 2},
-  {itemNumber: 1, itemQty: 1},
-  {itemNumber: 4, itemQty: 2}
-];
-// var Cart = [];
+// var Cart = [{index: 0, quantity: 2},
+//   {index: 1, quantity: 1},
+//   {index: 4, quantity: 2}
+// ];
+var Cart = [];
 var Catalog = [];
 
 // Create an event listener so that when the delete link is clicked, the removeItemFromCart method is invoked.
@@ -12,7 +12,7 @@ var table = document.getElementById('cart');
 table.addEventListener('click', removeItemFromCart);
 
 function loadCart() {
-  Cart = JSON.parse(localStorage.getItem('cart')) || [];
+  Cart = JSON.parse(localStorage.getItem('selections')) || [];
   Catalog = JSON.parse(localStorage.getItem('catalog')) || [];
 }
 // Make magic happen --- re-pull the Cart, clear out the screen and re-draw it
@@ -71,21 +71,21 @@ function showCart() {
 
     var tdQtyEl = document.createElement('td');
     tdQtyEl.setAttribute('id','q'+item);
-    tdQtyEl.textContent = Cart[item].itemQty;
+    tdQtyEl.textContent = Cart[item].quantity;
     trEl.appendChild(tdQtyEl);
 
     var tdItemEl = document.createElement('td');
     tdItemEl.setAttribute('id','i'+item);
     var tdIDivEl = document.createElement('div');
-    var itemFile = Catalog[Cart[item].itemNumber].filePath;
-    var productName = Catalog[Cart[item].itemNumber].name;
+    var itemFile = Catalog[Cart[item].index].filePath;
+    var productName = Catalog[Cart[item].index].name;
     tdIDivEl.innerHTML = '<img src='+itemFile+' /><p id=n'+item+'>'+productName+'</p>';
     tdItemEl.appendChild(tdIDivEl);
     trEl.appendChild(tdItemEl);
 
     var tdPriceEl = document.createElement('td');
     tdPriceEl.setAttribute('id','p'+item);
-    var itemPrice = Catalog[Cart[item].itemNumber].price;
+    var itemPrice = Catalog[Cart[item].index].price;
     tdPriceEl.textContent = '$' + itemPrice;
     trEl.appendChild(tdPriceEl);
 
@@ -126,10 +126,10 @@ function removeItemFromCart(e) {
     var itemName = pEl.textContent;
     console.log('removing',itemName);
     item = 0;
-    while (item < Cart.length && itemName !== Catalog[Cart[item].itemNumber].name) {
+    while (item < Cart.length && itemName !== Catalog[Cart[item].index].name) {
       item++;
     }
-    console.log('delete',Catalog[Cart[item].itemNumber].name);
+    console.log('delete',Catalog[Cart[item].index].name);
     // TODO: When a delete link is clicked, rebuild the Cart array without that item
     Cart.splice(item,1);
     // TODO: Save the cart back to local storage
