@@ -13,7 +13,12 @@ var divElement = document.getElementById('cartContents');
 var parsedSelections = JSON.parse(localStorage.getItem('selections'));
 
 // Array to store CartItem instances - grabs contents in Local Storage if any exist
-CartItem.arrCartItem = parsedSelections || [];
+if (parsedSelections) {
+  CartItem.arrCartItem = parsedSelections;
+  updateCartPreview();
+} else {
+  CartItem.arrCartItem = [];
+}
 
 // CartItem constructor
 function CartItem(index, quantity) {
